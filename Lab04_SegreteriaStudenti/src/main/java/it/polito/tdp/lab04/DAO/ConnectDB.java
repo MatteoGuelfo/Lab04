@@ -6,20 +6,17 @@ import java.sql.SQLException;
 
 public class ConnectDB {
 	
-	// check user e password
-	static private final String jdbcUrl = "jdbc:mysql://localhost/iscritticorsi?user=root&password=root";
-
+	private static String jdbcURL = "jdbc:mysql://localhost/iscritticorsi?user=root&password=258383";
+	
 	public static Connection getConnection() {
-
+		Connection connection= null;
 		try {
-				Connection connection = DriverManager.getConnection(jdbcUrl);
-				return connection;
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-			throw new RuntimeException("Cannot get a connection " + jdbcUrl, e);
+			connection= DriverManager.getConnection(jdbcURL);
+			
+		}catch(SQLException e) {
+			System.out.print("Errore apertura database" + e );
 		}
+		return connection;
+		 
 	}
-
 }
