@@ -15,7 +15,28 @@ public class Corso {
 		this.crediti = crediti;
 		this.nome = nome;
 		this.pd = pd;
+	}
+
+
+	public String getCodice() {
+		return codice;
+	}
+
+
+	public int getCrediti() {
+		return crediti;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public int getPd() {
+		return pd;
 	} 
+	
 	
 	
 

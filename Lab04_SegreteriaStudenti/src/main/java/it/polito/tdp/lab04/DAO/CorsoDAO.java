@@ -25,19 +25,30 @@ public class CorsoDAO {
 				
 				ResultSet res = st.executeQuery();
 				
-				List<Corso>  nomiCorsi = new ArrayList<>();
+				List<Corso>  corsi = new ArrayList<>();
 				
 				while(res.next()) {
 					Corso nome = new Corso(res.getString("codins"),Integer.parseInt(res.getString("crediti")),res.getString("nome"),Integer.parseInt(res.getString("pd")));
 					System.out.println(nome);
-					nomiCorsi.add(nome);
+					corsi.add(nome);
 				}
 				st.close();
 				conn.close();
-			return nomiCorsi;
+			return corsi;
 			
 			}catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
+		}
+		
+		
+		public List<String> elencoNomiCorso(){
+			List<String> nomi= new LinkedList<>(); 
+			
+			for(Corso c: elencoCorsi())
+				nomi.add(c.getNome());
+			
+			return nomi;
+			
 		}
 }
