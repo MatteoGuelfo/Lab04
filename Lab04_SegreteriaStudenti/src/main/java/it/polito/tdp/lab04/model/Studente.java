@@ -14,7 +14,35 @@ public class Studente {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.cds = cds;
+	}
+
+
+	public int getMatricola() {
+		return matricola;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public String getCognome() {
+		return cognome;
+	}
+
+
+	public String getCds() {
+		return cds;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Studente [matricola=" + matricola + ", nome=" + nome + ", cognome=" + cognome + ", cds=" + cds + "]";
 	} 
+	
+	
 	
 	
 

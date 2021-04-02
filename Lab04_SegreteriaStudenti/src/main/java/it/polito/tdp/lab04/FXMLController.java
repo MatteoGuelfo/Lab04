@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 
 public class FXMLController {
 	
-	private Model model;
+	Model model= new Model();
 
     @FXML
     private ResourceBundle resources;
@@ -35,6 +35,9 @@ public class FXMLController {
 
     @FXML
     private TextField txtMatricola;
+
+    @FXML
+    private Button btnVerde;
 
     @FXML
     private Button btnCercaCorsi;
@@ -67,11 +70,24 @@ public class FXMLController {
     void doWrite(ActionEvent event) {
 
     }
+
+    @FXML
+    void onHandleCercaStudente(ActionEvent event) {
+    	if(txtMatricola.equals("")) {
+    		txtGrande.setText("Devi inserire la matricola");
+    	}else {
+    		txtNome.setText(model.getNomeStudente(Integer.parseInt(txtMatricola.getText())));
+    		txtCognome.setText(model.getCognomeStudente(Integer.parseInt(txtMatricola.getText())));
+    	}
+    }
+
+    
     
     public void setModel(Model model) {
     	this.model=model; 
+    	comboCorsi.getItems().addAll(model.getNomiCorsi());
     }
-
+    
     @FXML
     void initialize() {
         assert comboCorsi != null : "fx:id=\"comboCorsi\" was not injected: check your FXML file 'Scene.fxml'.";
@@ -79,10 +95,12 @@ public class FXMLController {
         assert txtNome != null : "fx:id=\"txtNome\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtCognome != null : "fx:id=\"txtCognome\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtMatricola != null : "fx:id=\"txtMatricola\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert btnVerde != null : "fx:id=\"btnVerde\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnCercaCorsi != null : "fx:id=\"btnCercaCorsi\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnScrivi != null : "fx:id=\"btnScrivi\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtGrande != null : "fx:id=\"txtGrande\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
-        comboCorsi.getItems().addAll(model.getNomiCorsi());
+
     }
 }
+

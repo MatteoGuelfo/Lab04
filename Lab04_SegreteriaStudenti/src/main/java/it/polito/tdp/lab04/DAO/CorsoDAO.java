@@ -16,6 +16,7 @@ public class CorsoDAO {
 	
 		public List<Corso> elencoCorsi(){
 			
+			List<Corso>  corsi = new ArrayList<>();
 			try {
 				Connection conn= ConnectDB.getConnection();
 				
@@ -25,30 +26,22 @@ public class CorsoDAO {
 				
 				ResultSet res = st.executeQuery();
 				
-				List<Corso>  corsi = new ArrayList<>();
+				
 				
 				while(res.next()) {
 					Corso nome = new Corso(res.getString("codins"),Integer.parseInt(res.getString("crediti")),res.getString("nome"),Integer.parseInt(res.getString("pd")));
-					System.out.println(nome);
 					corsi.add(nome);
 				}
 				st.close();
 				conn.close();
-			return corsi;
+			
 			
 			}catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
+			return corsi;
 		}
 		
 		
-		public List<String> elencoNomiCorso(){
-			List<String> nomi= new LinkedList<>(); 
-			
-			for(Corso c: elencoCorsi())
-				nomi.add(c.getNome());
-			
-			return nomi;
-			
-		}
+
 }
