@@ -15,6 +15,7 @@ public class Model {
 	public Model() {
 		super();
 		this.corsoDao = new CorsoDAO();
+		this.studenteDao = new StudenteDAO();
 	}
 
 
@@ -31,11 +32,11 @@ public class Model {
 		return ritorno;
 	}
 	
-	public String getNomeStudente(int matricola) {
+	public String getNomeStudente(String matricola) {
 		return studenteDao.studenteMatricola(matricola).getNome();
 	}
 
-	public String getCognomeStudente(int matricola) {
+	public String getCognomeStudente(String matricola) {
 		return studenteDao.studenteMatricola(matricola).getCognome();
 	}
 }

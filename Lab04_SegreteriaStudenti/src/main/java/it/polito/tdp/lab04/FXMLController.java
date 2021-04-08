@@ -73,11 +73,12 @@ public class FXMLController {
 
     @FXML
     void onHandleCercaStudente(ActionEvent event) {
-    	if(txtMatricola.equals("")) {
+    	String matricola= txtMatricola.getText();
+    	if(matricola.equals("")) {
     		txtGrande.setText("Devi inserire la matricola");
     	}else {
-    		txtNome.setText(model.getNomeStudente(Integer.parseInt(txtMatricola.getText())));
-    		txtCognome.setText(model.getCognomeStudente(Integer.parseInt(txtMatricola.getText())));
+    		txtNome.setText(model.getNomeStudente(matricola));
+    		txtCognome.setText(model.getCognomeStudente(matricola));
     	}
     }
 
