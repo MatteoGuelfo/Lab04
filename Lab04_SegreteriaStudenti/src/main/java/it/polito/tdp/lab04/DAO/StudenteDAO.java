@@ -17,11 +17,11 @@ public class StudenteDAO {
 		try {
 			Connection conn= ConnectDB.getConnection(); 
 		
-			String sql = "SELECT * FROM studente WHERE matricola = "+matricola;
+			String sql = "SELECT * FROM studente WHERE matricola = ? ";
 		
 			PreparedStatement st1= conn.prepareStatement(sql); 
-			//st1.setString(1,matricola);
-			ResultSet res= st1.executeQuery(sql);
+			st1.setString(1,matricola);
+			ResultSet res= st1.executeQuery();
 			res.first();
 			
 			studente = new Studente(Integer.parseInt(res.getString("matricola")),res.getString("nome"), res.getString("cognome"), res.getString("CDS"));
@@ -37,4 +37,39 @@ public class StudenteDAO {
 		return studente; 
 		
 	}
+	
+	public List<String> studentiCorsi(String nomeCorso){
+		
+		 List<String> studenti= new LinkedList<>() ; 
+		
+		try {
+			Connection conn= ConnectDB.getConnection(); 
+		
+			String sql = "SELECT matricola "
+					+ "FROM iscrizione i, corso c"
+					+ " WHERE i.codins=c.codins AND c.nome = ?";
+		
+			PreparedStatement st1= conn.prepareStatement(sql); 
+			st1.setString(1, nomeCorso);
+			ResultSet res= st1.executeQuery();
+			res.first();
+
+
+			while(res.next()) {
+				studenti.add(res.getString("matricola"));
+				
+			}
+			
+			st1.close();
+			conn.close();
+			
+		} catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+		
+		return studenti; 
+		
+	}
+	
+	
 }

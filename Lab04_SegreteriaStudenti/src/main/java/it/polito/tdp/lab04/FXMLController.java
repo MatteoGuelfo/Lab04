@@ -58,7 +58,14 @@ public class FXMLController {
 
     @FXML
     void doCercaIscritti(ActionEvent event) {
-
+    	String output=""; 
+    	
+    	for(String  s: model.getStudentiCorso(comboCorsi.getValue())) {
+    		output+=s+"\n";
+    	}
+    	
+    	txtGrande.appendText(output);;
+    	
     }
 
     @FXML
@@ -87,6 +94,7 @@ public class FXMLController {
     public void setModel(Model model) {
     	this.model=model; 
     	comboCorsi.getItems().addAll(model.getNomiCorsi());
+    	txtGrande.setStyle("-fx-font-family: monospace");
     }
     
     @FXML

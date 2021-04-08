@@ -39,4 +39,15 @@ public class Model {
 	public String getCognomeStudente(String matricola) {
 		return studenteDao.studenteMatricola(matricola).getCognome();
 	}
+	
+	public List<String> getStudentiCorso(String nomeCorso){
+		List<String> studenti= new LinkedList<>(); 
+		
+		for(String s: studenteDao.studentiCorsi(nomeCorso)) {
+			studenti.add(studenteDao.studenteMatricola(s).toString());
+		}
+		
+		return studenti; 
+			
+	}
 }

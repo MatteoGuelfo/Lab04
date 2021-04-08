@@ -39,7 +39,13 @@ public class Studente {
 
 	@Override
 	public String toString() {
-		return "Studente [matricola=" + matricola + ", nome=" + nome + ", cognome=" + cognome + ", cds=" + cds + "]";
+		StringBuilder sb = new StringBuilder(); 
+		sb.append(String.format("%-8d", matricola)); 
+		sb.append(String.format("%-30s", nome));
+		sb.append(String.format("%-30s", cognome ));
+		sb.append(String.format("%-8s", cds));
+		
+		return sb.toString();
 	} 
 	
 	

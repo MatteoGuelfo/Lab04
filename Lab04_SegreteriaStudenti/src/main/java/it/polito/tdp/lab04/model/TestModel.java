@@ -10,7 +10,7 @@ public class TestModel {
 		
 		StudenteDAO  stud= new StudenteDAO();
 		
-		stud.studenteMatricola(159818);
+		stud.studenteMatricola("159818");
 
 	}
 
