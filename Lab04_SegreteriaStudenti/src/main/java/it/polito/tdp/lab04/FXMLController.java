@@ -91,6 +91,12 @@ public class FXMLController {
 
     @FXML
     void doWrite(ActionEvent event) {
+    	if(model.studenteIscrittoCorso( txtMatricola.getText(), comboCorsi.getValue())) {
+    		txtGrande.setText("Studente iscritto al corso");
+    	}else {
+    		txtGrande.setText("Studente non iscritto al corso");
+    	}
+    		
 
     }
 

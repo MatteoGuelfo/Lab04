@@ -38,16 +38,16 @@ public class StudenteDAO {
 		
 	}
 	
-	public List<String> studentiCorsi(String nomeCorso){
+	public List<Studente> studentiCorsi(String nomeCorso){
 		
-		 List<String> studenti= new LinkedList<>() ; 
+		 List<Studente> studenti= new LinkedList<>() ; 
 		
 		try {
 			Connection conn= ConnectDB.getConnection(); 
 		
-			String sql = "SELECT matricola "
-					+ "FROM iscrizione i, corso c"
-					+ " WHERE i.codins=c.codins AND c.nome = ?";
+			String sql = "SELECT *"
+					+ "FROM iscrizione i, corso c,studente s"
+					+ " WHERE i.codins=c.codins AND s.matricola=i.matricola AND c.nome = ?";
 		
 			PreparedStatement st1= conn.prepareStatement(sql); 
 			st1.setString(1, nomeCorso);
@@ -56,7 +56,7 @@ public class StudenteDAO {
 
 
 			while(res.next()) {
-				studenti.add(res.getString("matricola"));
+				studenti.add(new Studente(Integer.parseInt(res.getString("matricola")),res.getString("nome"), res.getString("cognome"), res.getString("CDS")));
 				
 			}
 			
@@ -70,6 +70,9 @@ public class StudenteDAO {
 		return studenti; 
 		
 	}
+	
+	
+	//public boolean iscriviStudente(String matricola, String )
 	
 	
 }

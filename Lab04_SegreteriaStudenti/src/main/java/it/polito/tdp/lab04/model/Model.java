@@ -43,8 +43,8 @@ public class Model {
 	public List<String> getStudentiCorso(String nomeCorso){
 		List<String> studenti= new LinkedList<>(); 
 		
-		for(String s: studenteDao.studentiCorsi(nomeCorso)) {
-			studenti.add(studenteDao.studenteMatricola(s).toString());
+		for(Studente s: studenteDao.studentiCorsi(nomeCorso)) {
+			studenti.add(s.toString());
 		}
 		
 		return studenti;			
@@ -62,5 +62,15 @@ public class Model {
 		}
 		
 		return corsi;
+	}
+	
+	public boolean studenteIscrittoCorso(String matricola, String nomeCorso) {
+		boolean ritorno=false;
+		for(Studente s: studenteDao.studentiCorsi(nomeCorso)) {
+			if(Integer.toString(s.getMatricola()).equals(matricola))
+			ritorno =  true;
+		}
+		
+		return ritorno;
 	}
 }

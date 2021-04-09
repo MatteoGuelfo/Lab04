@@ -26,15 +26,13 @@ public class CorsoDAO {
 				
 				ResultSet res = st.executeQuery();
 				
-				
-				
 				while(res.next()) {
 					Corso nome = new Corso(res.getString("codins"),Integer.parseInt(res.getString("crediti")),res.getString("nome"),Integer.parseInt(res.getString("pd")));
 					corsi.add(nome);
 				}
+				
 				st.close();
 				conn.close();
-			
 			
 			}catch (SQLException e) {
 				throw new RuntimeException(e);
