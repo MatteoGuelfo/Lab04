@@ -47,7 +47,20 @@ public class Model {
 			studenti.add(studenteDao.studenteMatricola(s).toString());
 		}
 		
-		return studenti; 
+		return studenti;			
+	}
+	
+	public List<String> getElencoCorsiMatricola(String matricola){
+		List<String> corsi = new LinkedList<>(); 
+		
+		for(Corso c : corsoDao.elencoCorsiMatricola(matricola)) {
+			corsi.add(c.toString());
 			
+		}
+		if(corsoDao.elencoCorsiMatricola(matricola).size()==0) {
+			return null;
+		}
+		
+		return corsi;
 	}
 }

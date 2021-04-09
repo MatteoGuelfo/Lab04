@@ -42,6 +42,39 @@ public class CorsoDAO {
 			return corsi;
 		}
 		
+		public List<Corso> elencoCorsiMatricola(String matricola){
+			
+			List<Corso> corsi = new ArrayList<>();
+			try {
+				Connection conn= ConnectDB.getConnection();
+				
+				String sql= "SELECT *"
+						+ " FROM iscrizione i, corso c"
+						+ " WHERE i.codins=c.codins  AND  i.matricola = ?";
+						
+				PreparedStatement st=conn.prepareStatement(sql);
+				st.setString(1, matricola);
+				ResultSet res = st.executeQuery();
+				
+				
+				
+				while(res.next()) {
+					Corso nome = new Corso(res.getString("codins"),Integer.parseInt(res.getString("crediti")),res.getString("nome"),Integer.parseInt(res.getString("pd")));
+					corsi.add(nome);
+				}
+				st.close();
+				conn.close();
+			
+			
+			}catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+			return corsi;
+		}
+		
+		
+		
+		
 		
 
 }

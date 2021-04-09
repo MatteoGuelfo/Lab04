@@ -37,6 +37,17 @@ public class Corso {
 		return pd;
 	} 
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder(); 
+		sb.append(String.format("%-10s", codice)); 
+		sb.append(String.format("%-4d", crediti));
+		sb.append(String.format("%-60s", nome ));
+		sb.append(String.format("%-3d", pd));
+		
+		return sb.toString();
+	} 
+	
 	
 	
 

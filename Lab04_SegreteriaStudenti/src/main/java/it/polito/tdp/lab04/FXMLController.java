@@ -53,18 +53,34 @@ public class FXMLController {
 
     @FXML
     void doCercaCorsi(ActionEvent event) {
-
+    	String output="";
+    	
+    	if(txtMatricola.getText().equals("")){
+    		txtGrande.setText("Nessuna matricola inserita");
+    	}else if(model.getElencoCorsiMatricola(txtMatricola.getText())==null){
+    				txtGrande.setText("La matricola "+ txtMatricola.getText()+" non esiste");
+    			}else {
+    					for(String s: model.getElencoCorsiMatricola(txtMatricola.getText())) {
+    							output+=s+"\n";
+    					}
+    				   txtGrande.setText(output);
+    				  }
     }
 
     @FXML
     void doCercaIscritti(ActionEvent event) {
     	String output=""; 
     	
-    	for(String  s: model.getStudentiCorso(comboCorsi.getValue())) {
-    		output+=s+"\n";
+    	if(comboCorsi.getValue() == null) {
+    		txtGrande.setText("Seleziona un corso");
+    	}else if(comboCorsi.getValue().equals("Nessun corso")){
+    			txtGrande.setText("Hai selezionato -Nessun corso- : non valido");
+    		  }else {
+    			  for(String  s: model.getStudentiCorso(comboCorsi.getValue())) {
+    				  output+=s+"\n";
+    			  	}
     	}
-    	
-    	txtGrande.appendText(output);;
+    	txtGrande.appendText(output);
     	
     }
 
